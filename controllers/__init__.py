@@ -25,46 +25,46 @@ class BaseObject(dict):
 				pass
 		return None
 
-def protected(func):
-	"""Decorator to enforce the presence of an oauth token.
+# def protected(func):
+# 	"""Decorator to enforce the presence of an oauth token.
 
-	If a valid token is present, the request continues and this
-	returns control to the decorated controller method. If
-	no token is present or the token is invalid, this returns
-	a failure response.
+# 	If a valid token is present, the request continues and this
+# 	returns control to the decorated controller method. If
+# 	no token is present or the token is invalid, this returns
+# 	a failure response.
 
-	"""
+# 	"""
 
-	@wraps(func)
-	def decorated_function(*args, **kwargs):
+# 	@wraps(func)
+# 	def decorated_function(*args, **kwargs):
 
-		auth_token = request.headers.get('Authorization')
-		decoded_token = decode_access_token(auth_token)
-		user_id = decoded_token['user_id']
+# 		auth_token = request.headers.get('Authorization')
+# 		decoded_token = decode_access_token(auth_token)
+# 		user_id = decoded_token['user_id']
 
-		print(user_id)
+# 		print(user_id)
 
-		sql = '''SELECT token, revoked, authenticated 
-				 FROM user_access_token WHERE user_id=%s'''
+# 		sql = '''SELECT token, revoked, authenticated 
+# 				 FROM user_access_token WHERE user_id=%s'''
 
-		cur = current_app.mysql.connection.cursor()
-		cur.execute(sql, (user_id,))
-		res = cur.fetchone()
+# 		cur = current_app.mysql.connection.cursor()
+# 		cur.execute(sql, (user_id,))
+# 		res = cur.fetchone()
 
-		expected_token = res[0]
-		revoked 	   = res[1]
-		authenticated  = res[2]
+# 		expected_token = res[0]
+# 		revoked 	   = res[1]
+# 		authenticated  = res[2]
 		
-		if (auth_token == expected_token):
+# 		if (auth_token == expected_token):
 
-			# Possibly check token expiration
-			g.user_id = decoded_token['user_id']
+# 			# Possibly check token expiration
+# 			g.user_id = decoded_token['user_id']
 
-			return func(*args, **kwargs)
+# 			return func(*args, **kwargs)
 
-		return {'status':'Unauthorized.'}
+# 		return {'status':'Unauthorized.'}
 
-	return decorated_function
+# 	return decorated_function
 
 def check_params_type(params):
 	"""Raises an exception if passed something besides a tuple"""
