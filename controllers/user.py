@@ -7,10 +7,10 @@ from flask_restful import Resource, Api, reqparse, HTTPException
 from flask_mysqldb import MySQL
 from flask import g
 
-from . import protected, db_query_select, db_query_update
+import protected, db_query_select, db_query_update
 from controllers.basecontroller import  BaseController
-from . import constants
-from . import status_codes as Status
+import constants
+import status_codes as Status
 
 class UserController(BaseController):
 
