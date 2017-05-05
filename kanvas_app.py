@@ -23,7 +23,7 @@ app.api = Api(app)
 app.mysql = MySQL(app)
 
 # define routes
-app.add_resource(UserController, '/user/<int:user_id>')
+app.api.add_resource(UserController, '/user/<int:user_id>')
 
 @app.before_request
 def before_request():
