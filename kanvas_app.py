@@ -9,7 +9,7 @@ from flask_mysqldb import MySQL
 import jwt
 import bcrypt
 
-from controllers.user import UserController
+#from controllers.user import UserController
 #from utilities import get_log_level
 
 app = Flask(__name__, instance_relative_config=True)
@@ -23,7 +23,7 @@ app.api = Api(app)
 app.mysql = MySQL(app)
 
 # define routes
-app.api.add_resource(UserController, '/user/<int:user_id>')
+app.add_resource(UserController, '/user/<int:user_id>')
 
 @app.before_request
 def before_request():
