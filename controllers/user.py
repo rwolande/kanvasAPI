@@ -8,8 +8,9 @@ from flask_mysqldb import MySQL
 from flask import g
 
 from . import protected, db_query_select, db_query_update
-from api.controllers.basecontroller import  BaseController
-from api import constants, status_codes
+from controllers.basecontroller import  BaseController
+from . import constants
+from . import status_codes as Status
 
 class UserController(BaseController):
 
