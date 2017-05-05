@@ -9,7 +9,7 @@ from flask_mysqldb import MySQL
 import jwt
 import bcrypt
 
-from api.controllers.user import UserController
+from controllers.user import UserController
 #from utilities import get_log_level
 
 app = Flask(__name__, instance_relative_config=True)
