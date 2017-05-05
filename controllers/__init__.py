@@ -11,7 +11,7 @@ from controllers.base import BaseController
 import jwt
 import bcrypt
 
-from api import constants
+import constants
 from status_codes import Status
 
 class BaseObject(dict):
