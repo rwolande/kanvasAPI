@@ -6,15 +6,15 @@ from flask_restful import Resource, Api, reqparse, HTTPException
 from flask_mysqldb import MySQL
 from _mysql_exceptions import IntegrityError
 
-from controllers.basecontroller import  BaseController
+from controllers.basecontroller import BaseController
 
 import jwt
 import bcrypt
 
 from api import constants
-from api.status_codes import Status
+from status_codes import Status
 
-class BranchObject(dict):
+class BaseObject(dict):
 	def __getattr__(self, key):
 		if key in self:
 			return self[key]
@@ -100,7 +100,7 @@ def db_query_select(sql, params=None):
 			cols = [col[0] for col in cur.description]
 			for res in cur:
 				serialized_res = [str(x) for x in res]
-				objects.append(BranchObject(dict(zip(cols,serialized_res))))
+				objects.append(BaseObject(dict(zip(cols,serialized_res))))
 
 	finally:
 		cur.close()

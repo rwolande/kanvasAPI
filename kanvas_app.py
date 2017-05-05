@@ -9,6 +9,7 @@ from flask_mysqldb import MySQL
 import jwt
 import bcrypt
 
+from controllers.base import BaseController
 from controllers.user import UserController
 #from utilities import get_log_level
 
