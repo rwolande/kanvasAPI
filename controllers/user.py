@@ -11,17 +11,21 @@ from flask import g
 from controllers.base import BaseController
 import constants
 import status_codes as Status
+from controllers import db_query_select
 
 class UserController(BaseController):
+
+	def __init__(self):
+		super(BaseController, self)
 
 	# @protected
 	def get(self, user_id, *args, **kwargs):
 
-		sql = 'SELECT * FROM ' + constants.USER_TABLE# + 'WHERE user_id= %s LIMIT 1'
+		sql = 'SELECT * FROM ' + constants.USER_TABLE + 'WHERE user_id= %s LIMIT 1'
 
 		#params = (,)#(user_id,)
 
-		res = db_query_select(sql)#, params)
+		res = db_query_select(sql)
 
 		user = res[0]
 
