@@ -17,3 +17,7 @@ class Status(Enum):
 	def __init__(self, code, message):
 		self.code = code
 		self.message = message
+
+	@classmethod
+	def success(e):
+		return e.SUCCESS

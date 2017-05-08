@@ -10,7 +10,7 @@ from flask import g
 #import db_query_select, db_query_update
 from controllers.base import BaseController
 import constants
-import status_codes as Status
+from status_codes import Status
 from controllers import db_query_select
 
 class UserController(BaseController):
@@ -21,16 +21,18 @@ class UserController(BaseController):
 	# @protected
 	def get(self, user_id, *args, **kwargs):
 
-		sql = 'SELECT * FROM ' + constants.USER_TABLE + 'WHERE user_id= %s LIMIT 1'
+		sql = 'SELECT * FROM' + constants.USER_TABLE + 'WHERE id= %s LIMIT 1'
 
-		#params = (,)#(user_id,)
+		print sql
 
-		res = db_query_select(sql)
+		params = (user_id,)
 
-		user = res[0]
+		res = db_query_select(sql,params)
 
 		if len(res) == 0:
-			return error_response(Status.MISSING_PARAMETERS)
+			return super(UserController,self).error_response(Status.MISSING_PARAMETERS)
+
+		user = res[0]
 		return success_response({'user':user})
 
 	# @protected

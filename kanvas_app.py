@@ -20,7 +20,6 @@ app.config.from_pyfile('config.py')
 # Loads the configration from /instance/config.py
 # NOTE: This file is not checked into git - it must 
 # be defined for every installation
-#app.config.from_pyfile('config.py')
 
 app.api = Api(app)
 app.mysql = MySQL(app)
